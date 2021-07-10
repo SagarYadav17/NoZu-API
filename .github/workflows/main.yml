@@ -18,5 +18,4 @@ jobs:
           heroku_app_name: "nozuapi"
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_email_address: ${{secrets.HEROKU_EMAIL}}
-          use_git: true
           disable_collect_static: false
