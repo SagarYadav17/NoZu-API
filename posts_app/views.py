@@ -24,12 +24,12 @@ class CreatePostView(APIView):
         try:
             post = Post.objects.create(
                 user=user, title=title, description=description)
-
             post.save()
 
-            return Response({'status': 'success'}, status=HTTP_201_CREATED)
+            return Response({'detail': 'New Post is created'}, status=HTTP_201_CREATED)
+
         except IntegrityError:
-            return Response({'status': 'title & description fields are required'}, HTTP_400_BAD_REQUEST)
+            return Response({'detail': 'title & description fields are required'}, HTTP_400_BAD_REQUEST)
 
 
 class UpdatePostView(RetrieveUpdateDestroyAPIView):
