@@ -1,27 +1,35 @@
-from django.shortcuts import render
-from rest_framework import generics, permissions
-from users_app import serializers
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from users_app import serializers as users_serializers
 from users_app.models import Profile
 from django.contrib.auth.models import User
 
 # Create your views here.
 
 
-class RegisterView(generics.CreateAPIView):
+class RegistrationValidatorView(ListAPIView):
+    """
+    View to validate already taken emails and usernames
+    """
+    permission_classes = [AllowAny]
+    serializer_class = users_serializers.RegistrationValidationSerializer
+
+
+class RegisterView(CreateAPIView):
     """
     View for New User Registration
     """
     queryset = User.objects.all()
-    permission_classes = [permissions.AllowAny]
-    serializer_class = serializers.RegisterSerializer
+    permission_classes = [AllowAny]
+    serializer_class = users_serializers.RegisterSerializer
 
 
-class ProfileView(generics.RetrieveUpdateDestroyAPIView):
+class ProfileView(RetrieveUpdateDestroyAPIView):
     """
     View for User Profile to Delete and Update
     """
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = serializers.ProfileSerializer
+    permission_classes = [IsAuthenticated]
+    serializer_class = users_serializers.ProfileSerializer
     queryset = Profile.objects.all()
 
     def get_object(self):

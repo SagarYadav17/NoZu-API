@@ -6,6 +6,12 @@ from django.contrib.auth.password_validation import validate_password
 from users_app.models import Profile
 
 
+class RegistrationValidationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         required=True,
@@ -42,4 +48,4 @@ class RegisterSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = '__all__'
+        exclude = ['id', 'user']
