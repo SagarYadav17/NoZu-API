@@ -14,7 +14,9 @@ class Profile(models.Model):
     full_name = models.CharField(max_length=50, blank=True, null=True)
     profile_image = models.ImageField(
         upload_to='media/uploads/profile_image', blank=True, null=True)
-    country = CountryField(countries_flag_url='//flags.example.com/{code}.png')
+    country = CountryField()
+    session_id = models.CharField(max_length=100, blank=True, null=True)
+    discord = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return str(self.user)
