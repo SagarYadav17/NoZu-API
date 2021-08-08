@@ -5,9 +5,22 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('password_reset/', include('django_rest_passwordreset.urls',
-         namespace='password_reset')),
+
+    # Authentication
+    path(
+        'api-auth/',
+        include('rest_framework.urls',
+        namespace='rest_framework')
+    ),
+
+    # Password Reset Package
+    path(
+        'password_reset/',
+        include('django_rest_passwordreset.urls',
+        namespace='password_reset')
+    ),
+
+    # Apps
     path('', include('users_app.urls')),
     path('', include('posts_app.urls')),
 ]

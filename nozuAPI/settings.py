@@ -33,9 +33,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Django Rest Framework
     'rest_framework',
+
+    # Apps
     'users_app',
     'posts_app',
+
+    # Pre-build Packages
     'django_countries',
     'django_rest_passwordreset',
 ]

@@ -20,3 +20,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+
+class Following(models.Model):
+    """
+    Follower: One who is following
+    Leader: One who is being followed
+    """
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
+    leader = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.follower.username)
