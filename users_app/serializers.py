@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
-from users_app.models import Profile
+from users_app.models import Profile, Following
+from django_countries.serializer_fields import CountryField
 
 
 class RegistrationValidationSerializer(serializers.ModelSerializer):
@@ -24,7 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2', 'email')
+        fields = ('username','email', 'password', 'password2')
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -46,6 +47,28 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
+    email = serializers.SerializerMethodField()
+    country = CountryField(name_only=True)
+
     class Meta:
         model = Profile
-        exclude = ['id', 'user']
+        fields = [
+            'username',
+            'email',
+            'full_name',
+            'profile_image',
+            'country',
+        ]
+
+    def get_email(self, obj):
+        return obj.user.email if obj.user else None
+
+    def get_username(self, obj):
+        return obj.user.username if obj.user else None
+
+
+class FollowingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Following
+        fields = '__all__'
