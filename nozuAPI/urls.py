@@ -9,15 +9,13 @@ urlpatterns = [
     # Authentication
     path(
         'api-auth/',
-        include('rest_framework.urls',
-        namespace='rest_framework')
+        include('rest_framework.urls'),
     ),
 
     # Password Reset Package
     path(
         'password_reset/',
-        include('django_rest_passwordreset.urls',
-        namespace='password_reset')
+        include('django_rest_passwordreset.urls'),
     ),
 
     # Apps
