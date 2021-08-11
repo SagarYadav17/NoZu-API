@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-eh6@weki-1j^@1m1%h=)nio#*+r12=oyqxj(-!8sb1irtwno&^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nozuapi.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'users_app',
     'posts_app',
 
-    # Pre-build Packages
+    # Packages
     'django_countries',
     'django_rest_passwordreset',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

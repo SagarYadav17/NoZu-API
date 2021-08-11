@@ -69,6 +69,11 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class FollowingSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
+
     class Meta:
         model = Following
-        fields = '__all__'
+        fields = ('id', 'username')
+
+    def get_username(self, obj):
+        return obj.leader.username if obj.leader else None
