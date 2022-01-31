@@ -27,7 +27,7 @@ class PostListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ("id", "title", "published_date", "slug")
+        fields = ("id", "title", "published_date", "summary", "slug")
 
     def get_published_date(self, obj):
         return naturalday(obj.published_date)
