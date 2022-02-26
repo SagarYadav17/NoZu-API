@@ -54,7 +54,7 @@ class FetchNews(APIView):
 
             # Top News
             url = f"{BASE_NEWS_URL}&country={country}"
-            print(url)
+
             response = requests.get(url).json()
 
             for article in response.get("articles"):
@@ -63,7 +63,7 @@ class FetchNews(APIView):
             # Category Based News
             for category_name in CATEGORIES:
                 url = f"{BASE_NEWS_URL}&country={country}&category={category_name}"
-                print(url)
+
                 response = requests.get(url).json()
 
                 for article in response.get("articles"):

@@ -10,15 +10,7 @@ SECRET_KEY = environ.get("SECRET_KEY")
 NEWS_API_KEY = environ.get("NEWS_API_KEY")
 COUNTRIES = ["us", "in", "gb"]
 BASE_NEWS_URL = f"https://newsapi.org/v2/top-headlines?apiKey={NEWS_API_KEY}"
-CATEGORIES = [
-    "business",
-    "entertainment",
-    "general",
-    "health",
-    "science",
-    "sports",
-    "technology",
-]
+CATEGORIES = ["entertainment", "science", "technology"]
 
 # Database
 # DATABASE_URL = environ.get("DATABASE_URL")
