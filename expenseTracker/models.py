@@ -5,7 +5,12 @@ from django.utils import timezone
 
 
 class Category(models.Model):
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
+
+    class Meta:
+        unique_together = ("user", "name")
+        ordering = ["name"]
 
     def __str__(self):
         return self.name

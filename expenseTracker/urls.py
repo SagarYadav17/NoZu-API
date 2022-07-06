@@ -1,8 +1,14 @@
-from django.urls import path
-from expenseTracker import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+
+from expenseTracker.views import ExpenseView, CategoryView
+
+app_name = "expense"
+
+router = DefaultRouter()
+router.register("expense", ExpenseView, basename="expense-category")
+router.register("category", CategoryView, basename="expense-expense")
 
 urlpatterns = [
-    path("category/", views.ExpenseCategoryView.as_view(), name="expense-expense-category"),
-    path("expense/", views.ExpenseView.as_view(), name="expense-expense-list-create"),
-    path("expense/<int:id>/", views.ExpenseDetailView.as_view(), name="expense-expense-detail"),
+    path("", include(router.urls)),
 ]
