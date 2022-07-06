@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Django Config
-SECRET_KEY = environ.get("SECRET_KEY")
+SECRET_KEY = environ.get("SECRET_KEY", 'secret-key')
 
 # News API https://newsapi.org/
 NEWS_API_KEY = environ.get("NEWS_API_KEY")

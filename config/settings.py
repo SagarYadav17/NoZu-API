@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     # Apps
     "authentication",
     "news",
-    "blog",
     "expenseTracker",
     # Plugins
     "rest_framework",
@@ -117,6 +116,7 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=2),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
+    "UPDATE_LAST_LOGIN": True,
 }
 
 
